@@ -1,0 +1,17 @@
+<h1>File Uploader</h1>
+
+<div class="picker">
+  <form name ="form" action="/api/upload" method="post" enctype="multipart/form-data">
+  <input type="file" id="picker" name="fList"
+      label="Choose folder"
+      (change)="fileChange($event.target.files)" 
+      webkitdirectory multiple>
+  <button type="submit" (click)="upload()">Upload</button>
+  </form>
+</div>
+
+<ul #listing *ngIf="this.filelist.length > 0">
+  <li *ngFor="let f of filelist">
+    <span>{{f}}</span>
+  </li>
+</ul>

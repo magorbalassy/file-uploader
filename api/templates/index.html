@@ -1,0 +1,30 @@
+<head>
+</head>
+<body>
+<h1><code>File Uploader</code> demo</h3>
+
+<p>HTML + JS file uploader</p>
+
+<div class="picker"><input type="file" id="picker" webkitdirectory multiple></div>
+
+<ul id="listing"></ul>
+
+  <script>
+  let picker = document.getElementById('picker');
+  let listing = document.getElementById('listing');
+  let formData = new FormData();
+
+  picker.addEventListener('change', e => {
+  for (let file of Array.from(e.target.files)) {
+    let item = document.createElement('li');
+    item.textContent = file.webkitRelativePath;
+    listing.appendChild(item);
+    formData.append("files[]", file, file['webkitRelativePath']);
+    //handle here the response, progress bar, etc.
+    };
+    fetch('http://localhost:5000/upload', {method:"POST", body:formData});
+  });
+  </script>
+
+
+</body>
