@@ -51,17 +51,11 @@ def upload_file():
 	
 	if success and errors:
 		errors['message'] = 'File(s) successfully uploaded'
-		resp = jsonify(errors)
-		resp.status_code = 206
-		return resp
+		return custom_response(206, errors)
 	if success:
-		resp = jsonify({'message' : 'Files successfully uploaded'})
-		resp.status_code = 201
-		return resp
+		return custom_response(201, 'Files successfully uploaded')
 	else:
-		resp = jsonify(errors)
-		resp.status_code = 400
-		return resp
+		return custom_response(400, errors)
 
 if __name__ == "__main__":
 	# set up your SSL, SSO here

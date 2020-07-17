@@ -25,7 +25,7 @@ export class AppComponent {
       for (var i = 0; i < this.fList.length; i++) {
           formData.append("files[]", this.fList[i], this.fList[i]['webkitRelativePath']);
       }
-      this.http.post('https://localhost:5000/upload', formData)
+      this.http.post('http://localhost:5000/upload', formData)
           .subscribe((response) => {
               console.log('response received is ', response);
           })
